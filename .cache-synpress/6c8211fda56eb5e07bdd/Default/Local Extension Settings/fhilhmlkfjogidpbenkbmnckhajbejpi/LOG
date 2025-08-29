@@ -1,0 +1,29 @@
+2025/08/29-15:14:28.119 b302 Creating DB /home/achuvyas/Developer/auto/.cache-synpress/6c8211fda56eb5e07bdd/Default/Local Extension Settings/fhilhmlkfjogidpbenkbmnckhajbejpi since it was missing.
+2025/08/29-15:14:28.124 b302 Reusing MANIFEST /home/achuvyas/Developer/auto/.cache-synpress/6c8211fda56eb5e07bdd/Default/Local Extension Settings/fhilhmlkfjogidpbenkbmnckhajbejpi/MANIFEST-000001
+2025/08/29-15:14:55.985 b303 Level-0 table #5: started
+2025/08/29-15:14:56.237 b303 Level-0 table #5: 5809173 bytes OK
+2025/08/29-15:14:56.243 b303 Delete type=0 #3
+2025/08/29-15:15:07.461 b303 Level-0 table #7: started
+2025/08/29-15:15:07.708 b303 Level-0 table #7: 5792446 bytes OK
+2025/08/29-15:15:07.715 b303 Delete type=0 #4
+2025/08/29-15:15:19.822 b303 Level-0 table #9: started
+2025/08/29-15:15:20.063 b303 Level-0 table #9: 5792455 bytes OK
+2025/08/29-15:15:20.071 b303 Delete type=0 #6
+2025/08/29-15:15:24.104 b303 Level-0 table #11: started
+2025/08/29-15:15:24.352 b303 Level-0 table #11: 5792613 bytes OK
+2025/08/29-15:15:24.359 b303 Delete type=0 #8
+2025/08/29-15:15:28.327 b303 Level-0 table #13: started
+2025/08/29-15:15:28.603 b303 Level-0 table #13: 5792710 bytes OK
+2025/08/29-15:15:28.610 b303 Delete type=0 #10
+2025/08/29-15:15:33.434 b303 Level-0 table #15: started
+2025/08/29-15:15:33.665 b303 Level-0 table #15: 5794164 bytes OK
+2025/08/29-15:15:33.674 b303 Delete type=0 #12
+2025/08/29-15:15:33.681 b303 Compacting 4@0 + 1@1 files
+2025/08/29-15:15:34.108 b303 Generated table #16@0: 1 keys, 5794164 bytes
+2025/08/29-15:15:34.127 b303 Compacted 4@0 + 1@1 files => 5794164 bytes
+2025/08/29-15:15:34.131 b303 compacted to: files[ 0 1 1 0 0 0 0 ]
+2025/08/29-15:15:34.133 b303 Delete type=2 #9
+2025/08/29-15:15:34.133 b303 Delete type=2 #7
+2025/08/29-15:15:34.133 b303 Delete type=2 #15
+2025/08/29-15:15:34.133 b303 Delete type=2 #13
+2025/08/29-15:15:34.134 b303 Delete type=2 #11

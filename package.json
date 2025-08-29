@@ -1,0 +1,42 @@
+{
+  "name": "auto",
+  "version": "1.0.0",
+  "description": "Dapp with MetaMask integration for automated testing",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:basic": "playwright test tests/basic.spec.ts",
+    "test:metamask": "playwright test tests/metamask-setup.spec.ts",
+    "test:metamask:headed": "playwright test tests/metamask-setup.spec.ts --headed",
+    "test:metamask:extended": "playwright test --config=playwright.metamask.config.ts tests/metamask-setup.spec.ts",
+    "test:metamask:extended:headed": "playwright test --config=playwright.metamask.config.ts tests/metamask-setup.spec.ts --headed",
+    "setup": "./scripts/setup-synpress.sh",
+    "wallet:info": "node scripts/get-wallet-address.js",
+    "hardhat:node": "npx hardhat node",
+    "hardhat:compile": "npx hardhat compile",
+    "local:test": "./scripts/start-local-test.sh"
+  },
+  "keywords": ["dapp", "metamask", "ethereum", "testing"],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "ethers": "^6.8.1"
+  },
+  "devDependencies": {
+    "@synthetixio/synpress": "^4.1.1",
+    "@playwright/test": "^1.40.0",
+    "@types/react": "^18.2.37",
+    "@types/react-dom": "^18.2.15",
+    "@vitejs/plugin-react": "^4.1.1",
+    "vite": "^4.5.0",
+    "hardhat": "^2.19.0",
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0"
+  }
+}

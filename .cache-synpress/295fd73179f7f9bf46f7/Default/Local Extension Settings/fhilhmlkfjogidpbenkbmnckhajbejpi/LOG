@@ -1,0 +1,42 @@
+2025/08/29-15:18:36.604 b632 Creating DB /home/achuvyas/Developer/auto/.cache-synpress/295fd73179f7f9bf46f7/Default/Local Extension Settings/fhilhmlkfjogidpbenkbmnckhajbejpi since it was missing.
+2025/08/29-15:18:36.628 b632 Reusing MANIFEST /home/achuvyas/Developer/auto/.cache-synpress/295fd73179f7f9bf46f7/Default/Local Extension Settings/fhilhmlkfjogidpbenkbmnckhajbejpi/MANIFEST-000001
+2025/08/29-15:18:57.557 b633 Level-0 table #5: started
+2025/08/29-15:18:57.873 b633 Level-0 table #5: 5792869 bytes OK
+2025/08/29-15:18:57.879 b633 Delete type=0 #3
+2025/08/29-15:19:06.977 b633 Level-0 table #7: started
+2025/08/29-15:19:07.218 b633 Level-0 table #7: 5792618 bytes OK
+2025/08/29-15:19:07.229 b633 Delete type=0 #4
+2025/08/29-15:19:17.516 b633 Level-0 table #9: started
+2025/08/29-15:19:17.738 b633 Level-0 table #9: 5792143 bytes OK
+2025/08/29-15:19:17.743 b633 Delete type=0 #6
+2025/08/29-15:19:31.159 b633 Level-0 table #11: started
+2025/08/29-15:19:31.378 b633 Level-0 table #11: 5792152 bytes OK
+2025/08/29-15:19:31.386 b633 Delete type=0 #8
+2025/08/29-15:19:35.559 b633 Level-0 table #13: started
+2025/08/29-15:19:35.786 b633 Level-0 table #13: 5792661 bytes OK
+2025/08/29-15:19:35.792 b633 Delete type=0 #10
+2025/08/29-15:19:39.938 b633 Level-0 table #15: started
+2025/08/29-15:19:40.207 b633 Level-0 table #15: 5792564 bytes OK
+2025/08/29-15:19:40.214 b633 Delete type=0 #12
+2025/08/29-15:19:40.226 b633 Compacting 4@0 + 1@1 files
+2025/08/29-15:19:40.664 b633 Generated table #16@0: 1 keys, 5792564 bytes
+2025/08/29-15:19:40.675 b633 Compacted 4@0 + 1@1 files => 5792564 bytes
+2025/08/29-15:19:40.678 b633 compacted to: files[ 0 1 1 0 0 0 0 ]
+2025/08/29-15:19:40.679 b633 Delete type=2 #9
+2025/08/29-15:19:40.679 b633 Delete type=2 #7
+2025/08/29-15:19:40.679 b633 Delete type=2 #15
+2025/08/29-15:19:40.680 b633 Delete type=2 #13
+2025/08/29-15:19:40.680 b633 Delete type=2 #11
+2025/08/29-15:19:44.825 b633 Level-0 table #18: started
+2025/08/29-15:19:45.048 b633 Level-0 table #18: 5794019 bytes OK
+2025/08/29-15:19:45.054 b633 Delete type=0 #14
+2025/08/29-15:19:48.659 b633 Level-0 table #20: started
+2025/08/29-15:19:48.917 b633 Level-0 table #20: 5794572 bytes OK
+2025/08/29-15:19:48.926 b633 Delete type=0 #17
+2025/08/29-15:19:52.379 b633 Level-0 table #22: started
+2025/08/29-15:19:52.599 b633 Level-0 table #22: 5794575 bytes OK
+2025/08/29-15:19:52.606 b633 Delete type=0 #19
+2025/08/29-15:19:58.718 b633 Level-0 table #24: started
+2025/08/29-15:19:58.936 b633 Level-0 table #24: 5794960 bytes OK
+2025/08/29-15:19:58.941 b633 Delete type=0 #21
+2025/08/29-15:19:58.949 b633 Compacting 4@0 + 1@1 files

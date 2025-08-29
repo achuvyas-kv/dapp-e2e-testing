@@ -1,0 +1,50 @@
+2025/08/29-12:52:18.809 66eb Creating DB /home/achuvyas/Developer/auto/.cache-synpress/532f685e346606c2a803/Default/Local Extension Settings/fhilhmlkfjogidpbenkbmnckhajbejpi since it was missing.
+2025/08/29-12:52:18.825 66eb Reusing MANIFEST /home/achuvyas/Developer/auto/.cache-synpress/532f685e346606c2a803/Default/Local Extension Settings/fhilhmlkfjogidpbenkbmnckhajbejpi/MANIFEST-000001
+2025/08/29-12:52:37.454 66eb Level-0 table #5: started
+2025/08/29-12:52:37.646 66eb Level-0 table #5: 5790833 bytes OK
+2025/08/29-12:52:37.651 66eb Delete type=0 #3
+2025/08/29-12:52:42.580 66eb Level-0 table #7: started
+2025/08/29-12:52:42.781 66eb Level-0 table #7: 5791039 bytes OK
+2025/08/29-12:52:42.787 66eb Delete type=0 #4
+2025/08/29-12:52:52.555 66eb Level-0 table #9: started
+2025/08/29-12:52:52.751 66eb Level-0 table #9: 5790954 bytes OK
+2025/08/29-12:52:52.756 66eb Delete type=0 #6
+2025/08/29-12:52:55.588 66eb Level-0 table #11: started
+2025/08/29-12:52:55.783 66eb Level-0 table #11: 5790963 bytes OK
+2025/08/29-12:52:55.787 66eb Delete type=0 #8
+2025/08/29-12:52:58.998 66eb Level-0 table #13: started
+2025/08/29-12:52:59.230 66eb Level-0 table #13: 5791430 bytes OK
+2025/08/29-12:52:59.234 66eb Delete type=0 #10
+2025/08/29-12:53:02.563 66eb Level-0 table #15: started
+2025/08/29-12:53:02.764 66eb Level-0 table #15: 5791197 bytes OK
+2025/08/29-12:53:02.770 66eb Delete type=0 #12
+2025/08/29-12:53:02.777 66eb Compacting 4@0 + 1@1 files
+2025/08/29-12:53:03.167 66eb Generated table #16@0: 1 keys, 5791197 bytes
+2025/08/29-12:53:03.183 66eb Compacted 4@0 + 1@1 files => 5791197 bytes
+2025/08/29-12:53:03.185 66eb compacted to: files[ 0 1 1 0 0 0 0 ]
+2025/08/29-12:53:03.187 66eb Delete type=2 #9
+2025/08/29-12:53:03.187 66eb Delete type=2 #7
+2025/08/29-12:53:03.188 66eb Delete type=2 #15
+2025/08/29-12:53:03.188 66eb Delete type=2 #13
+2025/08/29-12:53:03.188 66eb Delete type=2 #11
+2025/08/29-12:53:05.882 66eb Level-0 table #18: started
+2025/08/29-12:53:06.081 66eb Level-0 table #18: 5792378 bytes OK
+2025/08/29-12:53:06.087 66eb Delete type=0 #14
+2025/08/29-12:53:09.006 66eb Level-0 table #20: started
+2025/08/29-12:53:09.201 66eb Level-0 table #20: 5792808 bytes OK
+2025/08/29-12:53:09.206 66eb Delete type=0 #17
+2025/08/29-12:53:11.814 66eb Level-0 table #22: started
+2025/08/29-12:53:12.013 66eb Level-0 table #22: 5792902 bytes OK
+2025/08/29-12:53:12.019 66eb Delete type=0 #19
+2025/08/29-12:53:14.899 66eb Level-0 table #24: started
+2025/08/29-12:53:15.076 66eb Level-0 table #24: 5792800 bytes OK
+2025/08/29-12:53:15.081 66eb Delete type=0 #21
+2025/08/29-12:53:15.087 66eb Compacting 4@0 + 1@1 files
+2025/08/29-12:53:15.481 66eb Generated table #25@0: 1 keys, 5792800 bytes
+2025/08/29-12:53:15.493 66eb Compacted 4@0 + 1@1 files => 5792800 bytes
+2025/08/29-12:53:15.495 66eb compacted to: files[ 0 1 1 0 0 0 0 ]
+2025/08/29-12:53:15.496 66eb Delete type=2 #16
+2025/08/29-12:53:15.496 66eb Delete type=2 #20
+2025/08/29-12:53:15.496 66eb Delete type=2 #18
+2025/08/29-12:53:15.496 66eb Delete type=2 #22
+2025/08/29-12:53:15.496 66eb Delete type=2 #24

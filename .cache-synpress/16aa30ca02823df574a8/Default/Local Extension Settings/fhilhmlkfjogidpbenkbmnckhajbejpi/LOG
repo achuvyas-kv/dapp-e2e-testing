@@ -1,0 +1,35 @@
+2025/08/29-16:38:47.551 d36b Creating DB /home/achuvyas/Developer/auto/.cache-synpress/16aa30ca02823df574a8/Default/Local Extension Settings/fhilhmlkfjogidpbenkbmnckhajbejpi since it was missing.
+2025/08/29-16:38:47.566 d36b Reusing MANIFEST /home/achuvyas/Developer/auto/.cache-synpress/16aa30ca02823df574a8/Default/Local Extension Settings/fhilhmlkfjogidpbenkbmnckhajbejpi/MANIFEST-000001
+2025/08/29-16:39:15.162 d36c Level-0 table #5: started
+2025/08/29-16:39:15.431 d36c Level-0 table #5: 5809162 bytes OK
+2025/08/29-16:39:15.438 d36c Delete type=0 #3
+2025/08/29-16:39:26.575 d36c Level-0 table #7: started
+2025/08/29-16:39:26.851 d36c Level-0 table #7: 5793177 bytes OK
+2025/08/29-16:39:26.858 d36c Delete type=0 #4
+2025/08/29-16:39:38.146 d36c Level-0 table #9: started
+2025/08/29-16:39:38.374 d36c Level-0 table #9: 5793186 bytes OK
+2025/08/29-16:39:38.381 d36c Delete type=0 #6
+2025/08/29-16:39:42.564 d36c Level-0 table #11: started
+2025/08/29-16:39:42.822 d36c Level-0 table #11: 5792938 bytes OK
+2025/08/29-16:39:42.834 d36c Delete type=0 #8
+2025/08/29-16:39:47.028 d36c Level-0 table #13: started
+2025/08/29-16:39:47.312 d36c Level-0 table #13: 5792856 bytes OK
+2025/08/29-16:39:47.325 d36c Delete type=0 #10
+2025/08/29-16:39:51.777 d36c Level-0 table #15: started
+2025/08/29-16:39:52.000 d36c Level-0 table #15: 5794764 bytes OK
+2025/08/29-16:39:52.005 d36c Delete type=0 #12
+2025/08/29-16:39:52.014 d36c Compacting 4@0 + 1@1 files
+2025/08/29-16:39:52.445 d36c Generated table #16@0: 1 keys, 5794764 bytes
+2025/08/29-16:39:52.465 d36c Compacted 4@0 + 1@1 files => 5794764 bytes
+2025/08/29-16:39:52.468 d36c compacted to: files[ 0 1 1 0 0 0 0 ]
+2025/08/29-16:39:52.469 d36c Delete type=2 #9
+2025/08/29-16:39:52.469 d36c Delete type=2 #7
+2025/08/29-16:39:52.470 d36c Delete type=2 #15
+2025/08/29-16:39:52.470 d36c Delete type=2 #13
+2025/08/29-16:39:52.470 d36c Delete type=2 #11
+2025/08/29-16:39:55.616 d36c Level-0 table #18: started
+2025/08/29-16:39:55.884 d36c Level-0 table #18: 5795377 bytes OK
+2025/08/29-16:39:55.891 d36c Delete type=0 #14
+2025/08/29-16:39:59.564 d36c Level-0 table #20: started
+2025/08/29-16:39:59.811 d36c Level-0 table #20: 5795581 bytes OK
+2025/08/29-16:39:59.818 d36c Delete type=0 #17
