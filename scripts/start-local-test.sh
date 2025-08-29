@@ -13,6 +13,13 @@ cleanup() {
 # Set trap to cleanup on script exit
 trap cleanup EXIT
 
+# Check if cache exists, if not build it
+if [ ! -d ".cache-synpress" ] || [ -z "$(ls -A .cache-synpress)" ]; then
+    echo "🔧 Building Synpress wallet cache..."
+    npx synpress test/wallet-setup
+    echo "✅ Cache built successfully!"
+fi
+
 # Start Hardhat node in background
 echo "⛓️  Starting Hardhat local network..."
 npx hardhat node > hardhat.log 2>&1 &

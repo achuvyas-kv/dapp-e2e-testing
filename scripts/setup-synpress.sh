@@ -19,14 +19,20 @@ SYNPRESS_DOWNLOAD_METAMASK=true
 EOF
 fi
 
+echo "Building Synpress wallet cache..."
+npx synpress test/wallet-setup
+
+echo ""
 echo "Synpress setup complete!"
 echo ""
 echo "To run tests with MetaMask:"
-echo "1. Make sure the development server is running: npm run dev"
-echo "2. Run basic tests: npm run test:basic"
-echo "3. Run MetaMask tests with standard timeouts: npm run test:metamask"
-echo "4. Run MetaMask tests with extended timeouts: npm run test:metamask:extended"
-echo "5. For headed mode, add ':headed' to any test command"
+echo "1. Start Hardhat network: npm run hardhat:node"
+echo "2. Run MetaMask tests: npm run test:metamask:extended:headed"
+echo ""
+echo "Alternative commands:"
+echo "- One-command setup: npm run local:test"
+echo "- Basic tests: npm run test:basic"
+echo "- Headless tests: npm run test:metamask:extended"
 echo ""
 echo "Note: First run may take longer as Synpress downloads MetaMask extension"
 echo "Extended timeout tests give MetaMask more time to initialize (3 minutes)" 

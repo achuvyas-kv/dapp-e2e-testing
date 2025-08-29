@@ -1,1 +1,8 @@
 node_modules
+.cache-synpress
+dist
+.env.local
+*.log
+test-results/
+playwright-report/
+coverage/

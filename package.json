@@ -15,6 +15,8 @@
     "test:metamask:extended": "playwright test --config=playwright.metamask.config.ts tests/metamask-setup.spec.ts",
     "test:metamask:extended:headed": "playwright test --config=playwright.metamask.config.ts tests/metamask-setup.spec.ts --headed",
     "setup": "./scripts/setup-synpress.sh",
+    "cache:build": "npx synpress test/wallet-setup",
+    "cache:clean": "rm -rf .cache-synpress",
     "wallet:info": "node scripts/get-wallet-address.js",
     "hardhat:node": "npx hardhat node",
     "hardhat:compile": "npx hardhat compile",
