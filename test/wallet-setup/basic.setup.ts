@@ -11,8 +11,16 @@ export default defineWalletSetup(PASSWORD, async (context, walletPage) => {
 	// Create a new MetaMask instance
 	const metamask = new MetaMask(context, walletPage, PASSWORD)
 
+	// Wait longer for extension to load in CI environments
+	if (process.env.CI) {
+		await walletPage.waitForTimeout(10000) // Extra wait in CI
+	}
+
 	// Import the wallet using the seed phrase
 	await metamask.importWallet(SEED_PHRASE)
+
+	// Wait for wallet setup to complete
+	await walletPage.waitForTimeout(5000)
 
 	// Keep on default network for now
 	// We'll switch to local network in the tests

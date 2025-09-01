@@ -26,7 +26,7 @@ test('should setup MetaMask and connect to dapp', async ({
 
 	// Wait for MetaMask to fully initialize
 	console.log('Setting up MetaMask...')
-	await page.waitForTimeout(15000) // 15 seconds for full MetaMask setup
+	await page.waitForTimeout(30000) // 30 seconds for full MetaMask setup
 
 	// Add local Hardhat network to MetaMask
 	console.log('Adding local Hardhat network...')
@@ -97,7 +97,7 @@ test('should perform MetaMask actions with proper timing', async ({
 
 	// Wait for MetaMask to initialize
 	console.log('Initializing MetaMask...')
-	await page.waitForTimeout(15000)
+	await page.waitForTimeout(30000)
 
 	// Add local Hardhat network to MetaMask
 	console.log('Adding local Hardhat network...')

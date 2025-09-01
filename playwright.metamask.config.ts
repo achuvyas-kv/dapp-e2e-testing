@@ -10,17 +10,17 @@ export default defineConfig({
 	workers: 1, // Use only 1 worker for MetaMask tests
 	reporter: 'html',
 	// Extended timeout for MetaMask initialization
-	timeout: 180000, // 3 minutes
+	timeout: 300000, // 5 minutes
 	expect: {
-		timeout: 60000, // 1 minute for assertions
+		timeout: 90000, // 1.5 minutes for assertions
 	},
 	use: {
 		// Set base URL for tests
 		baseURL: 'http://localhost:3000',
 		trace: 'on-first-retry',
 		// Extended action timeouts
-		actionTimeout: 60000,
-		navigationTimeout: 90000,
+		actionTimeout: 90000,
+		navigationTimeout: 120000,
 	},
 	projects: [
 		{
