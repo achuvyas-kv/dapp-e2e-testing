@@ -1,6 +1,6 @@
-# 🚀 CI/CD Setup Guide for Synpress E2E Testing
+# 🚀 Simplified CI/CD Setup for Synpress E2E Testing
 
-This guide will help you set up continuous integration and deployment for your Synpress-based E2E testing project.
+This guide covers the simplified CI/CD setup that avoids MetaMask timeout issues by following proven patterns from the Synpress team.
 
 ## 📋 Prerequisites
 
@@ -10,16 +10,18 @@ Before setting up CI/CD, ensure you have:
 2. **Node.js Project**: With Synpress and Playwright configured
 3. **Repository Permissions**: Admin access to configure secrets and workflows
 
-## 🔐 Required GitHub Secrets
+## 🔐 Test Credentials (No Secrets Required!)
 
-Navigate to your repository → Settings → Secrets and variables → Actions, then add these secrets:
+The workflow uses dummy test credentials that are safely embedded in the YAML:
 
-### Required Secrets
+### Embedded Test Values
 
-| Secret Name | Description | Example Value | Required |
-|-------------|-------------|---------------|----------|
-| `SEED_PHRASE` | Wallet seed phrase for testing | `test test test test test test test test test test test junk` | ✅ |
-| `PASSWORD` | Wallet password for testing | `Tester@1234` | ✅ |
+| Variable | Value | Purpose |
+|----------|-------|---------|
+| `SEED_PHRASE` | `test test test test test test test test test test test junk` | Test wallet seed |
+| `PASSWORD` | `Tester@1234` | Test wallet password |
+
+**Note**: These are dummy values for testing only - safe to commit to public repositories.
 
 ### Optional Secrets (for advanced setups)
 
@@ -29,58 +31,30 @@ Navigate to your repository → Settings → Secrets and variables → Actions, 
 | `ALCHEMY_API_KEY` | Alchemy API key for external networks | `xyz789...` | ❌ |
 | `PREVIEW_BASE_URL` | URL for testing staging environments | `https://staging.example.com` | ❌ |
 
-## 📁 Workflow Files Created
+## 📁 Simplified Workflow Structure
 
-The following GitHub Actions workflows have been created in `.github/workflows/`:
+The new simplified setup uses a single workflow file in `.github/workflows/`:
 
-### 1. `ci.yml` - Main CI Pipeline
-- **Triggers**: Push to main/develop, Pull requests
-- **Purpose**: Automated testing on every code change
+### `test.yml` - Simplified Test Pipeline
+- **Triggers**: Push to main/dev/develop, Pull requests
+- **Purpose**: Reliable automated testing without timeouts
 - **Features**:
-  - Builds Synpress cache efficiently
-  - Runs tests in parallel shards (2x faster)
-  - Uploads test reports as artifacts
-  - Comments on PRs with test results
+  - **Unit Tests**: Fast feedback loop
+  - **Basic E2E Tests**: UI tests without wallet integration
+  - **MetaMask E2E Tests**: Full wallet integration tests
+  - **Proper timing**: Waits for services to be ready
+  - **Reliable caching**: Follows Synpress team patterns
 
-### 2. `manual-testing.yml` - Manual Test Execution
-- **Triggers**: Manual dispatch via GitHub UI
-- **Purpose**: On-demand testing with custom parameters
-- **Features**:
-  - Choose specific test patterns to run
-  - Select headed/headless mode
-  - Pick environment (local/staging/production)
-  - Detailed test summaries
+## 🛠️ Zero Setup Required!
 
-### 3. `scheduled-tests.yml` - Scheduled Testing
-- **Triggers**: Daily at 2 AM UTC
-- **Purpose**: Regular health checks and regression testing
-- **Features**:
-  - Comprehensive test suite execution
-  - Automatic issue creation on failures
-  - Long-term artifact retention (90 days)
+The new simplified workflow has **no setup steps** - everything works out of the box:
 
-## 🛠️ Setting Up Secrets
+- ✅ **Test credentials**: Already embedded in workflow
+- ✅ **Dependencies**: Auto-installed during workflow
+- ✅ **Services**: Auto-started with proper timing
+- ✅ **Browsers**: Auto-installed (Chromium only)
 
-### Step 1: Navigate to Repository Settings
-1. Go to your GitHub repository
-2. Click on **Settings** tab
-3. In the left sidebar, click **Secrets and variables** → **Actions**
-
-### Step 2: Add Required Secrets
-Click **New repository secret** and add:
-
-```bash
-# Wallet seed phrase (use a test wallet, never production!)
-SEED_PHRASE="test test test test test test test test test test test junk"
-
-# Wallet password
-PASSWORD="Tester@1234"
-```
-
-### Step 3: Verify Secret Setup
-Your secrets should look like this in the GitHub UI:
-- ✅ `SEED_PHRASE` - Hidden value
-- ✅ `PASSWORD` - Hidden value
+Just push your code and the tests will run automatically!
 
 ## 🚦 Triggering Workflows
 

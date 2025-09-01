@@ -51,19 +51,16 @@ The tests use a pre-configured test wallet:
 
 ## 🚀 CI/CD Setup
 
-This project includes GitHub Actions workflows for automated testing:
+This project includes a simplified GitHub Actions workflow for reliable automated testing:
 
 ### Quick CI/CD Setup
-1. **Configure GitHub Secrets** (Repository Settings → Secrets → Actions):
-   ```
-   SEED_PHRASE="test test test test test test test test test test test junk"
-   PASSWORD="Tester@1234"
-   ```
+1. **No setup required!** The dummy test credentials are already embedded in the workflow.
 
-2. **Available Workflows**:
-   - **Automatic**: Tests run on every push/PR
-   - **Manual**: Run specific tests via GitHub Actions UI
-   - **Scheduled**: Daily regression tests at 2 AM UTC
+2. **Automated Testing**:
+   - **Unit Tests**: Fast validation
+   - **Basic E2E Tests**: UI functionality without wallet
+   - **MetaMask E2E Tests**: Full wallet integration
+   - Runs on every push/PR to main, dev, or develop branches
 
 3. **View Results**: Check the Actions tab for test reports and artifacts
 

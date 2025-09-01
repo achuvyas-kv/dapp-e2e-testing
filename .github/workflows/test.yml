@@ -1,0 +1,167 @@
+name: 🧑‍🔧 Test
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+      - develop
+  pull_request:
+    branches:
+      - main
+      - dev
+      - develop
+
+jobs:
+  test-unit:
+    name: Run unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+
+      - name: Run unit tests (if available)
+        run: |
+          if npm run | grep -q "test:unit"; then
+            npm run test:unit
+          else
+            echo "No unit tests found, skipping..."
+          fi
+
+  test-e2e-headful-metamask:
+    name: Run E2E tests - MetaMask (headful)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright dependencies
+        run: npx playwright install-deps
+
+      - name: Install browsers for Playwright
+        run: npx playwright install chromium
+
+      - name: Build project
+        run: npm run build
+
+      - name: Install linux dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y \
+          xvfb
+
+      - name: Start local blockchain (Hardhat)
+        run: |
+          npm run hardhat:node &
+          # Wait for hardhat to be ready
+          sleep 15
+        env:
+          CI: true
+
+      - name: Start development server
+        run: |
+          npm run dev &
+          # Wait for dev server to be ready
+          sleep 10
+        env:
+          CI: true
+
+      - name: Build Synpress cache (MetaMask)
+        run: |
+          xvfb-run --auto-servernum --server-args="-screen 0 1280x960x24" npm run cache:build
+        env:
+          SEED_PHRASE: "test test test test test test test test test test test junk"
+          PASSWORD: "Tester@1234"
+
+      - name: Run E2E tests (headful)
+        run: |
+          xvfb-run --auto-servernum --server-args="-screen 0 1280x960x24" npm run test
+        env:
+          SEED_PHRASE: "test test test test test test test test test test test junk"
+          PASSWORD: "Tester@1234"
+          CI: true
+
+      - name: Archive Playwright report
+        uses: actions/upload-artifact@v4
+        if: success() || failure()
+        with:
+          name: playwright-report-headful-metamask
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: warn
+          retention-days: 30
+
+  test-e2e-basic:
+    name: Run basic E2E tests (no wallet)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright dependencies
+        run: npx playwright install-deps
+
+      - name: Install browsers for Playwright
+        run: npx playwright install chromium
+
+      - name: Build project
+        run: npm run build
+
+      - name: Install linux dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y \
+          xvfb
+
+      - name: Start development server
+        run: |
+          npm run dev &
+          # Wait for dev server to be ready
+          sleep 10
+        env:
+          CI: true
+
+      - name: Run basic E2E tests (no MetaMask)
+        run: |
+          xvfb-run --auto-servernum --server-args="-screen 0 1280x960x24" npm run test:basic
+        env:
+          CI: true
+
+      - name: Archive basic test report
+        uses: actions/upload-artifact@v4
+        if: success() || failure()
+        with:
+          name: playwright-report-basic
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: warn
+          retention-days: 30
