@@ -16,7 +16,7 @@ export default defineConfig({
 	},
 	use: {
 		// Set base URL for tests (can be overridden by environment variables)
-		baseURL: process.env.BASE_URL || 'http://localhost:5173',
+		baseURL: process.env.BASE_URL || 'http://localhost:3000',
 		trace: 'on-first-retry',
 		// Increase action timeout
 		actionTimeout: 30000,
