@@ -1,0 +1,181 @@
+name: 🧪 E2E Tests with Synpress
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: '18'
+
+jobs:
+  build-cache:
+    name: 🏗️ Build Synpress Cache
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📂 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 🔧 Install dependencies
+        run: npm ci
+
+      - name: 🗂️ Cache Synpress
+        id: cache-synpress
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/synpress
+            .cache-synpress
+          key: synpress-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            synpress-cache-${{ runner.os }}-
+
+      - name: 🏗️ Build Synpress cache
+        if: steps.cache-synpress.outputs.cache-hit != 'true'
+        run: |
+          # Use xvfb-run for headful mode on CI as required by Synpress
+          xvfb-run --auto-servernum --server-args="-screen 0 1280x960x24" -- npx synpress test/wallet-setup
+        env:
+          SEED_PHRASE: ${{ secrets.SEED_PHRASE || 'test test test test test test test test test test test junk' }}
+          PASSWORD: ${{ secrets.PASSWORD || 'Tester@1234' }}
+
+  e2e-tests:
+    name: 🧪 E2E Tests
+    runs-on: ubuntu-latest
+    needs: build-cache
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1/2, 2/2]  # Run tests in parallel shards for better performance
+    
+    steps:
+      - name: 📂 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 🔧 Install dependencies
+        run: npm ci
+
+      - name: 🗂️ Restore Synpress cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/synpress
+            .cache-synpress
+          key: synpress-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            synpress-cache-${{ runner.os }}-
+
+      - name: 🔧 Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: 🏗️ Build application
+        run: npm run build
+
+      - name: 🚀 Start Hardhat node in background
+        run: |
+          npm run hardhat:node &
+          # Wait for hardhat to be ready
+          sleep 10
+        env:
+          CI: true
+
+      - name: 🧪 Run E2E tests (headful mode)
+        run: |
+          # Run tests in headful mode using xvfb-run as required by Synpress
+          xvfb-run --auto-servernum --server-args="-screen 0 1280x960x24" -- npx playwright test --shard=${{ matrix.shard }}
+        env:
+          SEED_PHRASE: ${{ secrets.SEED_PHRASE || 'test test test test test test test test test test test junk' }}
+          PASSWORD: ${{ secrets.PASSWORD || 'Tester@1234' }}
+          CI: true
+
+      - name: 📊 Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report-${{ matrix.shard }}
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 30
+
+  publish-report:
+    name: 📊 Publish Test Report
+    if: always()
+    needs: e2e-tests
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📂 Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: 📊 Merge reports
+        run: |
+          # Install playwright to merge reports
+          npm install -g @playwright/test
+          
+          # Create merged report directory
+          mkdir -p merged-report
+          
+          # Copy all reports to merged directory
+          find artifacts -name "*.json" -path "*/test-results/*" -exec cp {} merged-report/ \;
+          
+          # Merge HTML reports if they exist
+          if [ -d "artifacts/playwright-report-1/playwright-report" ]; then
+            cp -r artifacts/playwright-report-1/playwright-report merged-report/
+          fi
+
+      - name: 📤 Upload merged report
+        uses: actions/upload-artifact@v4
+        with:
+          name: merged-playwright-report
+          path: merged-report/
+          retention-days: 30
+
+      - name: 📝 Comment PR with test results
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            
+            // Look for test results
+            let comment = '## 🧪 E2E Test Results\n\n';
+            
+            try {
+              // Check if there are any test result files
+              const artifactsDir = 'artifacts';
+              if (fs.existsSync(artifactsDir)) {
+                comment += '✅ E2E tests completed. Check the artifacts for detailed reports.\n\n';
+                comment += `🔗 [View detailed test report](${context.payload.pull_request.html_url}/checks)\n`;
+              } else {
+                comment += '❌ No test results found.\n';
+              }
+            } catch (error) {
+              comment += `❌ Error reading test results: ${error.message}\n`;
+            }
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });

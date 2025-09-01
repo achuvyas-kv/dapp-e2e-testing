@@ -49,8 +49,29 @@ The tests use a pre-configured test wallet:
 - Sends 1 ETH transactions
 - Runs automated tests with MetaMask integration
 
+## 🚀 CI/CD Setup
+
+This project includes GitHub Actions workflows for automated testing:
+
+### Quick CI/CD Setup
+1. **Configure GitHub Secrets** (Repository Settings → Secrets → Actions):
+   ```
+   SEED_PHRASE="test test test test test test test test test test test junk"
+   PASSWORD="Tester@1234"
+   ```
+
+2. **Available Workflows**:
+   - **Automatic**: Tests run on every push/PR
+   - **Manual**: Run specific tests via GitHub Actions UI
+   - **Scheduled**: Daily regression tests at 2 AM UTC
+
+3. **View Results**: Check the Actions tab for test reports and artifacts
+
+📖 **Detailed Setup**: See [`.github/CI_SETUP.md`](.github/CI_SETUP.md) for complete configuration guide.
+
 ## Troubleshooting
 
 - **Stuck at MetaMask setup screen**: Run `npx synpress test/wallet-setup` first
 - **Tests fail**: Ensure Hardhat node is running (`npm run hardhat:node`)
 - **Cache issues**: Delete `.cache-synpress` folder and rebuild with `npx synpress test/wallet-setup`
+- **CI/CD issues**: Check [CI Setup Guide](.github/CI_SETUP.md#-troubleshooting)

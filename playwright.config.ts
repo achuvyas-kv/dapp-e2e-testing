@@ -15,17 +15,28 @@ export default defineConfig({
 		timeout: 30000, // 30 seconds for assertions
 	},
 	use: {
-		// Set base URL for tests
-		baseURL: 'http://localhost:3000',
+		// Set base URL for tests (can be overridden by environment variables)
+		baseURL: process.env.BASE_URL || 'http://localhost:5173',
 		trace: 'on-first-retry',
 		// Increase action timeout
 		actionTimeout: 30000,
 		navigationTimeout: 60000,
+		// Enable screenshots and videos for CI
+		screenshot: process.env.CI ? 'only-on-failure' : 'off',
+		video: process.env.CI ? 'retain-on-failure' : 'off',
 	},
 	projects: [
 		{
 			name: 'chromium',
 			use: { ...devices['Desktop Chrome'] },
+		},
+		{
+			name: 'firefox',
+			use: { ...devices['Desktop Firefox'] },
+		},
+		{
+			name: 'webkit',
+			use: { ...devices['Desktop Safari'] },
 		},
 	],
 	// Additional Synpress-specific configuration can be added here

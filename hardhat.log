@@ -51,15 +51,6 @@ Any funds sent to them on Mainnet or any other live network WILL BE LOST.
 [32meth_blockNumber[0m
 [32meth_blockNumber (2)[0m
 [32meth_blockNumber (3)[0m
-[32meth_blockNumber (4)[0m
-[32meth_blockNumber (5)[0m
-[32meth_blockNumber (6)[0m
-[32meth_blockNumber (7)[0m
-[32meth_blockNumber (8)[0m
-[32meth_blockNumber (9)[0m
-[32meth_blockNumber (10)[0m
-[32meth_blockNumber (11)[0m
-[32meth_blockNumber (12)[0m
 [32meth_chainId[0m
 [32meth_chainId (2)[0m
 [32meth_blockNumber[0m
@@ -74,9 +65,19 @@ Any funds sent to them on Mainnet or any other live network WILL BE LOST.
 [32meth_blockNumber (3)[0m
 [32meth_blockNumber (4)[0m
 [32meth_blockNumber (5)[0m
-[32meth_blockNumber (6)[0m
-[32meth_blockNumber (7)[0m
-[32meth_blockNumber (8)[0m
-[32meth_blockNumber (9)[0m
-[32meth_blockNumber (10)[0m
-[32meth_blockNumber (11)[0m
+[32meth_gasPrice[0m
+[32meth_blockNumber[0m
+[32meth_estimateGas[0m
+[32meth_getCode[0m
+[32meth_blockNumber[0m
+[32meth_blockNumber (2)[0m
+[32meth_getTransactionCount[0m
+[32meth_blockNumber[0m
+[32meth_sendRawTransaction[0m
+  Transaction: 0x738a00a8ca82b4b86d4448d080b3a4ca55a0f8cf2e8f9dc9a214be2fa10ff6b9
+  From:        0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:          0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  Value:       1. ETH
+  Gas used:    21000 of 21001
+  Block #1:    0x5adf8b19dde8c86a31f90ad1709645810226e00855e0398a65349d1556f0f90b
+
