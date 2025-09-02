@@ -1,0 +1,98 @@
+name: Synpress CI
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+      - develop
+  pull_request:
+    branches:
+      - main
+      - dev
+      - develop
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: '18'
+  SEED_PHRASE: "test test test test test test test test test test test junk"
+  PASSWORD: "Tester@1234"
+
+jobs:
+  synpress-tests:
+    name: Run Synpress E2E Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright dependencies
+        run: npx playwright install-deps
+
+      - name: Install browsers for Playwright
+        run: npx playwright install chromium
+
+      - name: Build project
+        run: npm run build
+
+      - name: Install linux dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y xvfb
+
+      - name: Start local blockchain (Hardhat)
+        run: |
+          echo "Starting Hardhat node..."
+          npm run hardhat:node > hardhat.log 2>&1 &
+          echo "Waiting for Hardhat node..."
+          sleep 20
+          echo "✅ Hardhat node started"
+        env:
+          CI: true
+
+      - name: Start development server
+        run: |
+          echo "Starting dev server..."
+          npm run dev > dev.log 2>&1 &
+          echo "Waiting for dev server..."
+          sleep 12
+          echo "✅ Dev server started"
+        env:
+          CI: true
+
+      - name: Build cache
+        run: xvfb-run npx synpress test/wallet-setup
+        env:
+          SEED_PHRASE: ${{ env.SEED_PHRASE }}
+          PASSWORD: ${{ env.PASSWORD }}
+          CI: true
+
+      - name: Run E2E tests (headful)
+        run: xvfb-run npx playwright test
+        env:
+          SEED_PHRASE: ${{ env.SEED_PHRASE }}
+          PASSWORD: ${{ env.PASSWORD }}
+          CI: true
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: synpress-test-results
+          path: |
+            playwright-report/
+            test-results/
+            hardhat.log
+            dev.log
+          if-no-files-found: warn
+          retention-days: 30
